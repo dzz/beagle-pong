@@ -14,6 +14,7 @@ class ball():
     collision_max_x = arena.width_inner
     score_min_x = -1 * arena.width_outer
     score_max_x = 1 * arena.width_outer
+    english_decay = 1.0 - (2.5/60)
 
     def __init__(self, **kwargs):
 
@@ -41,21 +42,27 @@ class ball():
     def check_collision( self, paddle ):
 
         bounds = paddle.get_y_collision_bounds()
-
         if( self.y > bounds[0] ) and ( self.y < bounds[1] ):
+            self.english = paddle.get_english()
             self.vx *=-1
             self.x += self.vx
         else:
             self.active = False
 
     def tick(self):
+        self.english *= ball.english_decay
         self.x = self.x + self.vx
         self.y = self.y + self.vy + self.english
 
+
         if(self.y > ball.max_y):
+            self.english *= -1
             self.vy *= -1
+            self.y = ball.max_y + self.vy
         if(self.y < ball.min_y):
+            self.english *= -1
             self.vy *= -1
+            self.y = ball.min_y + self.vy
 
         if(self.active):
             if(self.x < ball.collision_min_x ):
@@ -79,7 +86,7 @@ class ball():
             "translation_world"    : [ self.render_x, self.render_y ],
             "scale_world"          : [ 1, 1],
             "view"                 : self.view,
-            "rotation_local"       : self.rotation,
+            "rotation_local"       : self.english,
             "filter_color"         : [ 1.0, 1.0, 1.0, 1.0],
             "uv_translate"         : [ 0,0 ] }
 

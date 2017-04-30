@@ -1,12 +1,22 @@
 from client.beagle.beagle_api import api as bgl
 from client.beagle.assets import assets
+from math import exp
+from .arena import arena
+
+def leaky_integrator_time_constant( time_secs ):
+    e = exp(1.0)
+    samplerate = 60
+    return pow( e, -1  / (time_secs* samplerate) )
 
 class paddle():
 
     base_x = 7
-    min_y = -3
-    max_y = 3
+    min_y = -1 * arena.height
+    max_y = arena.height
     collision_height = 1.2
+    movement_filter_coeff = 0.2 
+    english_leaky_integrator_decay = leaky_integrator_time_constant( 0.2 ) 
+    english_leaky_integrator_gain = 0.06
 
     def __init__(self, **kwargs):
         self.primitive = bgl.primitive.unit_uv_square
@@ -21,12 +31,22 @@ class paddle():
 
         self.controller = kwargs['controller']
         self.y = 0
+        self.english = 0
+
+    def get_english(self):
+        return self.english * paddle.english_leaky_integrator_gain
 
     def apply_motion(self, y):
+
+        self.english += y
+
+        self.english *= paddle.english_leaky_integrator_decay
+
         new_y = self.y + y
         new_y = max( min( new_y, paddle.max_y ), paddle.min_y )
         #IIR filter for smoothiness
-        self.y = self.y*0.7 + new_y*0.3
+        self.y = self.y*( 1-paddle.movement_filter_coeff ) + new_y*( paddle.movement_filter_coeff )
+
     def tick(self):
         self.controller.control(self)
         pass
