@@ -1,15 +1,19 @@
+from .game_objects.paddle import paddle
+
 class game():
     def __init__(self):
-        pass
+        self.tickables = []
 
     def init(self):
-        pass
+        self.left_paddle = paddle()
+        self.tickables.append(self.left_paddle)
 
     def tick(self):
-        pass
+        for tickable in self.tickables:
+            tickable.tick()
 
     def render(self):
-        pass
+        self.left_paddle.render()
 
     def finalize(self):
         pass
