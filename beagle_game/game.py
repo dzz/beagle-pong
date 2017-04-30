@@ -1,4 +1,7 @@
+from client.beagle.beagle_api import api as bgl
+
 from .game_objects.paddle import paddle
+from .game_objects.paddle_controller import paddle_controller
 from .game_objects.hud import hud
 
 class game():
@@ -6,17 +9,23 @@ class game():
         self.tickables = []
 
     def init(self):
-        self.left_paddle = paddle()
+        self.left_paddle = paddle( side = "left", controller = paddle_controller( mode = "human_leftstick")  )
+        self.right_paddle = paddle( side = "right", controller = paddle_controller( mode = "human_rightstick" ) )
         self.hud = hud()
-        self.tickables.append(self.left_paddle)
+        self.tickables.extend([ self.left_paddle, self.right_paddle ])
 
     def tick(self):
         for tickable in self.tickables:
             tickable.tick()
 
     def render(self):
-        #self.left_paddle.render()
-        self.hud.render()
+        paddle_batch = []
+
+        bgl.context.clear(0,1,0,1)
+        with bgl.blendmode.alpha_over:
+            self.left_paddle.render()
+            self.right_paddle.render()
+            self.hud.render()
 
     def finalize(self):
         pass

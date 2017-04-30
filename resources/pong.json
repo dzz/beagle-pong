@@ -1,0 +1,14 @@
+{
+    "description" : "Resource for beagle-pong",
+    "version"   : "0.1.0",
+    "preload"   : true,
+    "resources" : {
+        "texture" : [
+            { 
+                "name" : "paddle", 
+                "filename" : "resources/pong/paddle.png",
+                "filtered" : false
+            }
+        ]
+    }
+}
