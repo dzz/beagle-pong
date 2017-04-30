@@ -4,15 +4,23 @@
     "preload"   : true,
     "resources" : {
         "texture" : [
-            { 
-                "name" : "paddle", 
-                "filename" : "resources/pong/paddle.png",
-                "filtered" : false
-            }, 
-            { 
-                "name" : "ball", 
-                "filename" : "resources/pong/ball.png",
-                "filtered" : false
+        { 
+            "name" : "paddle", 
+            "filename" : "resources/pong/paddle.png",
+            "filtered" : false
+        }, 
+        { 
+            "name" : "ball", 
+            "filename" : "resources/pong/ball.png",
+            "filtered" : false
+        }
+        ],
+            "shader" : [
+            {
+                "description" : "Background Effect Shader",
+                "name" : "background",
+                "vertex_program" : "beagle-2d/vertex/no_transform",
+                "pixel_program" : "pong/pixel/background"
             }
         ]
     }

@@ -8,7 +8,8 @@ hud_height_chars = 12
 
 class hud():
     def __init__(self): 
-        self.render_buffer =  bgl.framebuffer.from_dims( hud_width_chars * font_size, hud_height_chars * font_size );
+        self.t = 0
+        self.render_buffer =  bgl.framebuffer.from_dims( hud_width_chars * font_size, hud_height_chars * font_size )
 
     def render(self):
 
