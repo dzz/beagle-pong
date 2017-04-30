@@ -8,6 +8,11 @@
                 "name" : "paddle", 
                 "filename" : "resources/pong/paddle.png",
                 "filtered" : false
+            }, 
+            { 
+                "name" : "ball", 
+                "filename" : "resources/pong/ball.png",
+                "filtered" : false
             }
         ]
     }

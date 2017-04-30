@@ -6,6 +6,7 @@ class paddle():
     base_x = 7
     min_y = -3
     max_y = 3
+    collision_height = 1.2
 
     def __init__(self, **kwargs):
         self.primitive = bgl.primitive.unit_uv_square
@@ -29,6 +30,9 @@ class paddle():
     def tick(self):
         self.controller.control(self)
         pass
+
+    def get_y_collision_bounds(self):
+        return [ self.y - paddle.collision_height, self.y + paddle.collision_height ]
 
     def get_shader_params(self):
         return {
