@@ -49,7 +49,6 @@ class paddle():
 
     def tick(self):
         self.controller.control(self)
-        pass
 
     def get_y_collision_bounds(self):
         return [ self.y - paddle.collision_height, self.y + paddle.collision_height ]

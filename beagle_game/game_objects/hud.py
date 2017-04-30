@@ -1,5 +1,6 @@
 from client.beagle.beagle_api import api as bgl
 from client.beagle.assets import assets
+from .arena import arena
 
 font_size = 8 # default size for lotext font renderer
 hud_width_chars = 24
@@ -14,6 +15,6 @@ class hud():
         with bgl.context.render_target(self.render_buffer):
             bgl.context.clear(0,1,0,0)
             with bgl.blendmode.alpha_over:
-                bgl.lotext.render_text_grid("   ~= BEAGLE PONG =~", 0,1, [1.0,0.0,1.0] )
+                bgl.lotext.render_text_grid("{0}".format([ arena.score_left, arena.score_right ]), 8,5, [1.0,0.0,1.0] )
 
         self.render_buffer.render_processed( assets.get("beagle-2d/shader/passthru") )
