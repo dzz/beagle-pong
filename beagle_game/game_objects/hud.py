@@ -14,8 +14,8 @@ class hud():
     def render(self):
 
         with bgl.context.render_target(self.render_buffer):
-            bgl.context.clear(0,1,0,0)
+            bgl.context.clear(0,0,0,0)
             with bgl.blendmode.alpha_over:
-                bgl.lotext.render_text_grid("{0}".format([ arena.score_left, arena.score_right ]), 8,5, [1.0,0.0,1.0] )
+                bgl.lotext.render_text_grid("{0}".format([ arena.score_left, arena.score_right ]), 8,5, [0.0,0.0,0.0] )
 
         self.render_buffer.render_processed( assets.get("beagle-2d/shader/passthru") )
