@@ -34,8 +34,6 @@ class game():
 
     def render(self):
 
-        #self.background.render()
-
         ##copy the curent frame to last frame for use in
         ##feedback effects
 
