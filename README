@@ -7,6 +7,9 @@
 
 v1.0
 
-a pong game with a cute feedback buffer effect
+* pong game with a neat feedback buffer effect
+* dual stick controller required, one stick per paddle
+* runs with beagle ( https://github.com/dzz/beagle )
+* modify beagle-pong.bat if beagle is not in your path
 
-plays on one controller
+
