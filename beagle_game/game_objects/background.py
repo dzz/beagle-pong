@@ -8,7 +8,6 @@ class background():
         self.primitive = bgl.primitive.unit_uv_square
         self.t = 0
         self.shader = assets.get("pong/shader/background")
-        self.motion_blur_shader = assets.get("beagle-2d/shader/passthru_filtered")
         self.ball = kwargs['ball']
         self.input_buffer = kwargs['input_buffer']
 
