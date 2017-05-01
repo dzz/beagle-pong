@@ -1,7 +1,12 @@
 
-  ~= B E A G L E - S K E L E T O N =~
+ _               _                         
+| |_ ___ ___ ___| |___ ___ ___ ___ ___ ___ 
+| . | -_| .'| . | | -_|___| . | . |   | . |
+|___|___|__,|_  |_|___|   |  _|___|_|_|_  |
+            |___|         |_|         |___|
 
-  A starting point for new beagle apps
-runs with: https://github.com/dzz/beagle
+v1.0
 
+a pong game with a cute feedback buffer effect
 
+plays on one controller

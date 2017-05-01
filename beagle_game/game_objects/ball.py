@@ -68,15 +68,15 @@ class ball():
         if(self.active):
             if(self.x < ball.collision_min_x ):
                 self.check_collision( self.left_paddle )
-                arena.score_right += 1
             if(self.x > ball.collision_max_x ):
                 self.check_collision( self.right_paddle )
-                arena.score_left += 1
 
         if(self.x < ball.score_min_x ):
             self.reset()
+            arena.score_right += 1
         if(self.x > ball.score_max_x ):
             self.reset()
+            arena.score_left += 1
 
         self.render_x = self.render_x * ( 1 - ball.render_position_smoothing_filter_coef ) + ( self.x * ball.render_position_smoothing_filter_coef )
         self.render_y = self.render_y * ( 1 - ball.render_position_smoothing_filter_coef ) + ( self.y * ball.render_position_smoothing_filter_coef )

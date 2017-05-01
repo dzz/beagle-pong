@@ -11,8 +11,6 @@ class game():
     def __init__(self):
         self.tickables = []
 
-
-
     def new_tickable( self, tickable ):
         self.tickables.append( tickable )
         return tickable
@@ -21,7 +19,6 @@ class game():
         self.last_frame = bgl.framebuffer.from_screen()
         self.current_frame = bgl.framebuffer.from_screen()
         self.left_paddle = self.new_tickable( paddle( side = "left", controller = paddle_controller( mode = "human_leftstick")  ) )
-
         self.right_paddle =self.new_tickable( paddle( side = "right", controller = paddle_controller( mode = "human_rightstick" ) ) )
         self.ball = self.new_tickable( ball( left_paddle = self.left_paddle, right_paddle = self.right_paddle ) )
 
