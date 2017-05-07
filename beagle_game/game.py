@@ -7,10 +7,7 @@ from .game_objects.paddle_controller import paddle_controller
 from .game_objects.hud import hud
 from .game_objects.background import background
 
-class game():
-    def __init__(self):
-        self.tickables = []
-
+class game(bgl.simple_tick_manager):
     def new_tickable( self, tickable ):
         self.tickables.append( tickable )
         return tickable
@@ -26,11 +23,6 @@ class game():
 
 
         self.hud = hud()
-
-
-    def tick(self):
-        for tickable in self.tickables:
-            tickable.tick()
 
     def render(self):
 
