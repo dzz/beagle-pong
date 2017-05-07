@@ -8,18 +8,15 @@ from .game_objects.hud import hud
 from .game_objects.background import background
 
 class game(bgl.simple_tick_manager):
-    def new_tickable( self, tickable ):
-        self.tickables.append( tickable )
-        return tickable
 
     def init(self):
         self.last_frame = bgl.framebuffer.from_screen()
         self.current_frame = bgl.framebuffer.from_screen()
-        self.left_paddle = self.new_tickable( paddle( side = "left", controller = paddle_controller( mode = "human_leftstick")  ) )
-        self.right_paddle =self.new_tickable( paddle( side = "right", controller = paddle_controller( mode = "human_rightstick" ) ) )
-        self.ball = self.new_tickable( ball( left_paddle = self.left_paddle, right_paddle = self.right_paddle ) )
+        self.left_paddle = self.create_tickable( paddle( side = "left", controller = paddle_controller( mode = "human_leftstick")  ) )
+        self.right_paddle =self.create_tickable( paddle( side = "right", controller = paddle_controller( mode = "human_rightstick" ) ) )
+        self.ball = self.create_tickable( ball( left_paddle = self.left_paddle, right_paddle = self.right_paddle ) )
 
-        self.background = self.new_tickable( background( ball = self.ball, input_buffer = self.last_frame ) )
+        self.background = self.create_tickable( background( ball = self.ball, input_buffer = self.last_frame ) )
 
 
         self.hud = hud()
